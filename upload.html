@@ -36,12 +36,35 @@
 <h2>Upload Photo</h2>
 
 <div class="container">
-    <input type="text" placeholder="Enter username">
-    <input type="text" placeholder="Paste image URL">
-    <button>Upload</button>
+    <input id="username" type="text" placeholder="Enter username">
+    <input id="imageURL" type="text" placeholder="Paste image URL">
+    <button onclick="uploadPhoto()">Upload</button>
 </div>
 
 <a href="index.html">Back to home</a>
+<script>
+function uploadPhoto() {
+    let username = document.getElementById("username").value;
+    let imageURL = document.getElementById("imageURL").value;
+
+    if(username === "" || imageURL === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // Save data to localStorage
+    let newPost = {
+        username: username,
+        image: imageURL
+    };
+
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(posts));
+
+    alert("Photo uploaded successfully!");
+}
+</script>
 
 </body>
 </html>

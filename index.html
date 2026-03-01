@@ -16,6 +16,16 @@
             font-size: 22px;
             font-weight: bold;
             border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        .topbar a {
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            font-weight: normal;
         }
         .post {
             background: white;
@@ -44,11 +54,13 @@
 
 <div class="topbar">
     Onescroll
-    <a href="upload.html" style="float:right; color:black; font-size:14px; margin-right:10px;">Upload</a>
+    <a href="upload.html">Upload</a>
+    <a href="chat.html">Chat</a>
 </div>
 
 <div id="feed"></div>
 
+<!-- Example posts (can be removed if using localStorage posts) -->
 <div class="post">
     <div class="username">Lostchild</div>
     <img src="https://img.sanishtech.com/u/3ba3a27ed92d9f62c380856729a19727.jpg" alt="Post Image">
@@ -67,77 +79,48 @@
     </div>
 </div>
 
-<div class="post">
-    <div class="username">Lostchild</div>
-    <img src="https://img.sanishtech.com/u/3ba3a27ed92d9f62c380856729a19727.jpg" alt="Post Image">
-    <div class="actions">
-        <button>Like</button>
-        <button>Comment</button>
-    </div>
-</div>
-
-<div class="post">
-    <div class="username">Lostchild</div>
-    <img src="https://img.sanishtech.com/u/aa252c03af45b7b4d1c336ccf1cf5e28.jpg" alt="Post Image">
-    <div class="actions">
-        <button>Like</button>
-        <button>Comment</button>
-    </div>
-</div>
-
-<div class="post">
-    <div class="username">Lostchild</div>
-    <img src="https://img.sanishtech.com/u/8fe7a7c52e2ddf53b3ecb5dff456a0ee.jpg" alt="Post Image">
-    <div class="actions">
-        <button>Like</button>
-        <button>Comment</button>
-    </div>
-</div>
-
 <script>
-function loadPosts() {
-    let posts = JSON.parse(localStorage.getItem("posts")) || [];
-    let feed = document.getElementById("feed");
-
-    posts.forEach(post => {
-        let postHTML = `
-            <div class="post">
-                <div class="username">${post.username}</div>
-                <img src="${post.image}">
-                <div class="actions">
-                    <button>Like</button>
-                    <button>Comment</button>
+    // Load posts from localStorage (if any)
+    function loadPosts() {
+        let posts = JSON.parse(localStorage.getItem("posts")) || [];
+        let feed = document.getElementById("feed");
+        posts.forEach(post => {
+            let postHTML = `
+                <div class="post">
+                    <div class="username">${post.username}</div>
+                    <img src="${post.image}">
+                    <div class="actions">
+                        <button>Like</button>
+                        <button>Comment</button>
+                    </div>
                 </div>
-            </div>
-        `;
-        feed.innerHTML += postHTML;
-    });
-}
-loadPosts();
-</script>
+            `;
+            feed.innerHTML += postHTML;
+        });
+    }
+    loadPosts();
 
-<script>
-function activateButtons() {
+    // Like button functionality
     document.querySelectorAll(".actions button:first-child").forEach(function(btn){
-        btn.onclick = function(){
-            if(btn.innerText === "Like"){
+        btn.addEventListener("click", function(){
+            let current = btn.innerText;
+            if(current === "Like"){
                 btn.innerText = "Liked ❤️";
             } else {
                 btn.innerText = "Like";
             }
-        };
+        });
     });
 
+    // Comment button functionality
     document.querySelectorAll(".actions button:last-child").forEach(function(btn){
-        btn.onclick = function(){
+        btn.addEventListener("click", function(){
             let comment = prompt("Write your comment:");
             if(comment && comment.trim() !== ""){
                 alert("Comment added: " + comment);
             }
-        };
+        });
     });
-}
-activateButtons();
 </script>
 
 </body>

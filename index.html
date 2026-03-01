@@ -42,6 +42,13 @@
 </head>
 <body>
 
+<div class="topbar">
+    Onescroll
+    <a href="upload.html" style="float:right; color:black; font-size:14px; margin-right:10px;">Upload</a>
+</div>
+
+<div id="feed"></div>
+
 <div class="post">
     <div class="username">Lostchild</div>
     <img src="https://img.sanishtech.com/u/3ba3a27ed92d9f62c380856729a19727.jpg" alt="Post Image">
@@ -87,10 +94,9 @@
     </div>
 </div>
 
-    <script>
+<script>
 function loadPosts() {
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
-
     let feed = document.getElementById("feed");
 
     posts.forEach(post => {
@@ -108,33 +114,31 @@ function loadPosts() {
     });
 }
 loadPosts();
-    </script>
-   
-    <script>
-document.querySelectorAll(".actions button:first-child").forEach(function(btn){
-    btn.addEventListener("click", function(){
-        let current = btn.innerText;
+</script>
 
-        if(current === "Like"){
-            btn.innerText = "Liked ❤️";
-        } else {
-            btn.innerText = "Like";
-        }
+<script>
+function activateButtons() {
+    document.querySelectorAll(".actions button:first-child").forEach(function(btn){
+        btn.onclick = function(){
+            if(btn.innerText === "Like"){
+                btn.innerText = "Liked ❤️";
+            } else {
+                btn.innerText = "Like";
+            }
+        };
     });
-});
-    </script>
 
-    <script>
-document.querySelectorAll(".actions button:last-child").forEach(function(btn){
-    btn.addEventListener("click", function(){
-        let comment = prompt("Write your comment:");
-
-        if(comment && comment.trim() !== ""){
-            alert("Comment added: " + comment);
-        }
+    document.querySelectorAll(".actions button:last-child").forEach(function(btn){
+        btn.onclick = function(){
+            let comment = prompt("Write your comment:");
+            if(comment && comment.trim() !== ""){
+                alert("Comment added: " + comment);
+            }
+        };
     });
-});
-    </script>
+}
+activateButtons();
+</script>
 
 </body>
 </html>

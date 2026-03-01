@@ -64,7 +64,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"></script>
 
 <script>
-  // --- Firebase config (your project)
+  // --- Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyBvH4fC_JjbRxhR33s2hWZjpiOVzg9V-Vw",
     authDomain: "onescroll-chat-cbb26.firebaseapp.com",
@@ -76,8 +76,13 @@
   };
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
-
   const chatBox = document.getElementById("chat-box");
+
+  // --- Step 4: Ask user for username
+  let username = prompt("Enter your username:");
+  if(!username || username.trim() === ""){
+      username = "Lostchild";
+  }
 
   // --- Send message function
   function sendMessage() {
@@ -86,7 +91,7 @@
       if(message === "") return;
 
       db.ref("messages").push({
-          username: "Lostchild",
+          username: username, // <-- chosen username
           text: message,
           timestamp: Date.now()
       });

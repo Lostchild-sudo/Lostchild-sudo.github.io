@@ -42,13 +42,23 @@
 </head>
 <body>
 
-<div class="topbar">
-    Onescroll
-    <a href="upload.html" style="float:right; color:white; 
-        font-size:14px; margin-right:10px;">Upload</a>
+<div class="post">
+    <div class="username">Lostchild</div>
+    <img src="https://img.sanishtech.com/u/3ba3a27ed92d9f62c380856729a19727.jpg" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
 </div>
 
-<div id="feed"></div>
+<div class="post">
+    <div class="username">Lostchild</div>
+    <img src="https://img.sanishtech.com/u/10587de208f45df69cf0c5a7a74e06a7.jpg" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
+</div>
 
 <div class="post">
     <div class="username">Lostchild</div>
@@ -61,7 +71,16 @@
 
 <div class="post">
     <div class="username">Lostchild</div>
-    <img src="https://img.sanishtech.com/u/10587de208f45df69cf0c5a7a74e06a7.jpg" alt="1000015444" alt="Post Image">
+    <img src="https://img.sanishtech.com/u/aa252c03af45b7b4d1c336ccf1cf5e28.jpg" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
+</div>
+
+<div class="post">
+    <div class="username">Lostchild</div>
+    <img src="https://img.sanishtech.com/u/8fe7a7c52e2ddf53b3ecb5dff456a0ee.jpg" alt="Post Image">
     <div class="actions">
         <button>Like</button>
         <button>Comment</button>
@@ -89,6 +108,32 @@ function loadPosts() {
     });
 }
 loadPosts();
+    </script>
+   
+    <script>
+document.querySelectorAll(".actions button:first-child").forEach(function(btn){
+    btn.addEventListener("click", function(){
+        let current = btn.innerText;
+
+        if(current === "Like"){
+            btn.innerText = "Liked ❤️";
+        } else {
+            btn.innerText = "Like";
+        }
+    });
+});
+    </script>
+
+    <script>
+document.querySelectorAll(".actions button:last-child").forEach(function(btn){
+    btn.addEventListener("click", function(){
+        let comment = prompt("Write your comment:");
+
+        if(comment && comment.trim() !== ""){
+            alert("Comment added: " + comment);
+        }
+    });
+});
     </script>
 
 </body>

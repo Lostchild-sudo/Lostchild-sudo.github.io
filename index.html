@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My First Website</title>
+    <title>Onescroll</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .topbar {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+        }
+        .post {
+            background: white;
+            margin: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .post img {
+            width: 100%;
+        }
+        .username {
+            padding: 10px;
+            font-weight: bold;
+        }
+        .actions {
+            padding: 10px;
+        }
+        .actions button {
+            padding: 8px 12px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World! This is my website.</h1>
-    <p>Created on my phone using GitHub Pages.</p>
+
+<div class="topbar">Onescroll</div>
+
+<div class="post">
+    <div class="username">Lostchild</div>
+    <img src="https://pin.it/4ZPOdeOEO" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
+</div>
+
+<div class="post">
+    <div class="username">username123</div>
+    <img src="https://pin.it/4X50wreWF" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
+</div>
+
+<div class="post">
+    <div class="username">username123</div>
+    <img src="https://pin.it/IAdNubvTH" alt="Post Image">
+    <div class="actions">
+        <button>Like</button>
+        <button>Comment</button>
+    </div>
+</div>
+
 </body>
 </html>

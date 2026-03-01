@@ -48,9 +48,11 @@
         font-size:14px; margin-right:10px;">Upload</a>
 </div>
 
+<div id="feed"></div>
+
 <div class="post">
     <div class="username">Lostchild</div>
-    <img src="https://pin.it/4ZPOdeOEO" alt="Post Image">
+    <img src="images/pic1.jpg" alt="Post Image">
     <div class="actions">
         <button>Like</button>
         <button>Comment</button>
@@ -59,21 +61,35 @@
 
 <div class="post">
     <div class="username">Lostchild</div>
-    <img src="https://pin.it/4X50wreWF" alt="Post Image">
+    <img src="images/pic2.jpg" alt="Post Image">
     <div class="actions">
         <button>Like</button>
         <button>Comment</button>
     </div>
 </div>
 
-<div class="post">
-    <div class="username">Lostchild</div>
-    <img src="https://pin.it/IAdNubvTH" alt="Post Image">
-    <div class="actions">
-        <button>Like</button>
-        <button>Comment</button>
-    </div>
-</div>
+    <script>
+function loadPosts() {
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    let feed = document.getElementById("feed");
+
+    posts.forEach(post => {
+        let postHTML = `
+            <div class="post">
+                <div class="username">${post.username}</div>
+                <img src="${post.image}">
+                <div class="actions">
+                    <button>Like</button>
+                    <button>Comment</button>
+                </div>
+            </div>
+        `;
+        feed.innerHTML += postHTML;
+    });
+}
+loadPosts();
+    </script>
 
 </body>
 </html>
